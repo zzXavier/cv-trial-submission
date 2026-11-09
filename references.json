@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "method": "manual visual annotation from original frames",
+    "box": "full body, racket excluded",
+    "target": "near-side player closest to camera in each clip",
+    "coordinates": "integer source pixels; x/y top-left; w/h dimensions; frame indices are zero based",
+    "regular_sampling": "12 uniformly spaced indices per clip, round(linspace(0, frame_count-1, 12)); endpoints included",
+    "diagnostic_sampling": {
+      "9055": [
+        283,
+        292,
+        346,
+        351,
+        352
+      ],
+      "iBbVocyi7jM8QqB_VID_20260509144917376_rallies": [
+        238,
+        391,
+        392,
+        393
+      ]
+    },
+    "annotation_provenance": "Visual inspection of original decoded video frames and magnified crops with source-pixel rulers; no detector, pose, or tracker outputs used.",
+    "precision_limit": "Approximate visual boundary precision 5 pixels; motion blur may increase ambiguity. Sparse labels do not establish per-frame accuracy.",
+    "visibility": "All selected target bodies are visible; boxes enclose visible body including hands, clothing, hair and shoes; racket, ball and shadows excluded."
+  },
+  "clips": {
+    "9055": [
+      {
+        "frame_index": 0,
+        "x": 590,
+        "y": 306,
+        "w": 75,
+        "h": 182,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 37,
+        "x": 595,
+        "y": 329,
+        "w": 80,
+        "h": 153,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 75,
+        "x": 624,
+        "y": 315,
+        "w": 52,
+        "h": 159,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 112,
+        "x": 525,
+        "y": 315,
+        "w": 85,
+        "h": 174,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 150,
+        "x": 522,
+        "y": 298,
+        "w": 78,
+        "h": 197,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 187,
+        "x": 570,
+        "y": 300,
+        "w": 78,
+        "h": 190,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 225,
+        "x": 520,
+        "y": 315,
+        "w": 103,
+        "h": 175,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 262,
+        "x": 529,
+        "y": 304,
+        "w": 66,
+        "h": 184,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 283,
+        "x": 541,
+        "y": 312,
+        "w": 60,
+        "h": 170,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 292,
+        "x": 542,
+        "y": 311,
+        "w": 54,
+        "h": 170,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 300,
+        "x": 544,
+        "y": 312,
+        "w": 54,
+        "h": 167,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 337,
+        "x": 542,
+        "y": 328,
+        "w": 56,
+        "h": 145,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 346,
+        "x": 546,
+        "y": 329,
+        "w": 65,
+        "h": 143,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 351,
+        "x": 548,
+        "y": 332,
+        "w": 54,
+        "h": 141,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 352,
+        "x": 550,
+        "y": 332,
+        "w": 52,
+        "h": 141,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 375,
+        "x": 560,
+        "y": 339,
+        "w": 42,
+        "h": 126,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 412,
+        "x": 549,
+        "y": 342,
+        "w": 36,
+        "h": 118,
+        "visible": true,
+        "sample": "regular"
+      }
+    ],
+    "iBbVocyi7jM8QqB_VID_20260509144917376_rallies": [
+      {
+        "frame_index": 0,
+        "x": 1036,
+        "y": 466,
+        "w": 100,
+        "h": 373,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 92,
+        "x": 1033,
+        "y": 374,
+        "w": 119,
+        "h": 416,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 184,
+        "x": 839,
+        "y": 452,
+        "w": 112,
+        "h": 383,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 238,
+        "x": 631,
+        "y": 462,
+        "w": 125,
+        "h": 372,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 276,
+        "x": 599,
+        "y": 458,
+        "w": 141,
+        "h": 376,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 368,
+        "x": 598,
+        "y": 450,
+        "w": 151,
+        "h": 384,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 391,
+        "x": 597,
+        "y": 451,
+        "w": 149,
+        "h": 384,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 392,
+        "x": 598,
+        "y": 451,
+        "w": 147,
+        "h": 384,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 393,
+        "x": 599,
+        "y": 451,
+        "w": 147,
+        "h": 384,
+        "visible": true,
+        "sample": "diagnostic"
+      },
+      {
+        "frame_index": 460,
+        "x": 637,
+        "y": 468,
+        "w": 127,
+        "h": 347,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 553,
+        "x": 972,
+        "y": 461,
+        "w": 104,
+        "h": 371,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 645,
+        "x": 1050,
+        "y": 453,
+        "w": 146,
+        "h": 387,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 737,
+        "x": 998,
+        "y": 455,
+        "w": 181,
+        "h": 381,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 829,
+        "x": 1044,
+        "y": 450,
+        "w": 158,
+        "h": 399,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 921,
+        "x": 809,
+        "y": 491,
+        "w": 247,
+        "h": 368,
+        "visible": true,
+        "sample": "regular"
+      },
+      {
+        "frame_index": 1013,
+        "x": 698,
+        "y": 490,
+        "w": 183,
+        "h": 384,
+        "visible": true,
+        "sample": "regular"
+      }
+    ]
+  }
+}

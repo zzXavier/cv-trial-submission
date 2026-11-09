@@ -1,0 +1,26 @@
+{
+  "version": "baseline",
+  "cpu_model": "Intel Core i7-13650HX",
+  "intra_op_threads": 16,
+  "model_load_s": 21.62638990000005,
+  "command_total_s": 185.35199820000003,
+  "video_s_per_run": 47.5616484375,
+  "processing_seconds_per_minute_excluding_model_load": 206.543230117622,
+  "timing_method": "Cached model initialized once including TensorFlow import; original baseline.main called for each clip with the loaded model. Total sums initialization and the two processing/export runs.",
+  "clips": [
+    {
+      "source": "9055.mp4",
+      "frames": 413,
+      "video_s": 13.738666666666667,
+      "clip_total_s": 44.72282330000007,
+      "baseline_log": "evaluation/logs/9055_baseline.json"
+    },
+    {
+      "source": "iBbVocyi7jM8QqB_VID_20260509144917376_rallies.mp4",
+      "frames": 1014,
+      "video_s": 33.82298177083333,
+      "clip_total_s": 119.0027849999999,
+      "baseline_log": "evaluation/logs/iBbVocyi7jM8QqB_VID_20260509144917376_rallies_baseline.json"
+    }
+  ]
+}

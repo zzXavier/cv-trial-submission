@@ -1,0 +1,40 @@
+{
+  "model_load_s": 15.416591200002586,
+  "command_total_s": 202.87401640000098,
+  "intra_op_threads": "16",
+  "clips": [
+    {
+      "source": "9055.mp4",
+      "output": "outputs/9055_deadzone.mp4",
+      "mode": "deadzone",
+      "frames": 413,
+      "video_s": 13.738666666666667,
+      "processing_s": 46.17901569999958,
+      "inference_s": 38.74975580002865,
+      "encoding_s": 2.70641009999963,
+      "clip_total_s": 48.99946529999943,
+      "accepted_frames": 413,
+      "unresolved_frames": 0,
+      "camera_resets": 0,
+      "replay": false
+    },
+    {
+      "source": "iBbVocyi7jM8QqB_VID_20260509144917376_rallies.mp4",
+      "output": "outputs/iBbVocyi7jM8QqB_VID_20260509144917376_rallies_deadzone.mp4",
+      "mode": "deadzone",
+      "frames": 1014,
+      "video_s": 33.82298177083333,
+      "processing_s": 128.87718870000026,
+      "inference_s": 103.90286379996905,
+      "encoding_s": 9.3979889000002,
+      "clip_total_s": 138.44230620000235,
+      "accepted_frames": 1014,
+      "unresolved_frames": 0,
+      "camera_resets": 0,
+      "replay": false
+    }
+  ],
+  "cpu_model": "Intel Core i7-13650HX",
+  "video_s_per_run": 47.5616484375,
+  "processing_seconds_per_minute_excluding_model_load": 236.48140637471792
+}

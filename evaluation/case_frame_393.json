@@ -1,0 +1,37 @@
+{
+  "clip": "iBbVocyi7jM8QqB_VID_20260509144917376_rallies.mp4",
+  "frame_index": 393,
+  "timestamp_s": 13.108907136033038,
+  "reference_xywh": {
+    "x": 599,
+    "y": 451,
+    "w": 147,
+    "h": 384
+  },
+  "modes": {
+    "baseline": {
+      "frame_index": 393,
+      "sample": "diagnostic",
+      "visible": true,
+      "center_error": 0.02549342105263158,
+      "center_outside": false,
+      "body_retained_fraction": 1.0,
+      "crop_width_px": 608,
+      "previous_crop_x": 807,
+      "crop_x": 384,
+      "horizontal_step_px": 423
+    },
+    "deadzone": {
+      "frame_index": 393,
+      "sample": "diagnostic",
+      "visible": true,
+      "center_error": 0.09457236842105263,
+      "center_outside": false,
+      "body_retained_fraction": 1.0,
+      "crop_width_px": 608,
+      "previous_crop_x": 426,
+      "crop_x": 426,
+      "horizontal_step_px": 0
+    }
+  }
+}

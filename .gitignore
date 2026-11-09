@@ -1,0 +1,19 @@
+# --- Grader-only: never commit, never show candidates ---
+# Hidden reference labels, label spec, validator and dummy test data.
+grader/
+
+# --- Clips: never committed. Send them to candidates privately. ---
+clips/*
+!clips/.gitkeep
+*.mp4
+*.mov
+
+# Generated outputs
+out/
+
+# Python / env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
