@@ -17,11 +17,68 @@ import cv2
 import imageio_ffmpeg
 import numpy as np
 
-from crop_control import CropController
-from tracking import map_pose
-from shot_tracking import ShotTracker, validate_anchors
+from tracking import ShotTracker, map_pose, validate_anchors
 
 MODEL_URL = 'https://tfhub.dev/google/movenet/singlepose/lightning/4'
+CAMERA_MODES = ('direct', 'smooth', 'deadzone')
+
+
+class CropController:
+    """Keep a floating-point crop left edge and start centered on initial_x."""
+
+    def __init__(self, width, height, fps, initial_x, mode="deadzone", *,
+                 deadzone=0.15, response_s=0.2, max_speed=1.0):
+        if any(not math.isfinite(v) or v <= 0 for v in
+               (width, height, fps, response_s, max_speed)):
+            raise ValueError("Dimensions, fps, response_s and max_speed must be positive and finite")
+        if int(width) != width or int(height) != height:
+            raise ValueError("Frame dimensions must be integers")
+        if not math.isfinite(initial_x) or not 0 <= deadzone < 0.5:
+            raise ValueError("initial_x must be finite and deadzone must be in [0, 0.5)")
+        if mode not in CAMERA_MODES:
+            raise ValueError("mode must be direct, smooth or deadzone")
+        self.width, self.fps = int(width), float(fps)
+        self.crop_w = min(self.width, round(int(height) * 9 / 16))
+        self.mode, self.deadzone = mode, deadzone
+        self.response_s = response_s
+        self.x = self._bounded(initial_x - self.crop_w / 2)
+        self._max_step = max_speed * self.crop_w / self.fps
+
+    def _bounded(self, x):
+        return min(max(float(x), 0.0), self.width - self.crop_w)
+
+    def update(self, target_x: float | None, body_box=None) -> int:
+        """Advance one frame and hold the crop when the target is missing."""
+        if target_x is None or not math.isfinite(target_x):
+            return round(self.x)
+
+        zone_scale = 1.0
+        low, high = -math.inf, math.inf
+        if (body_box is not None and all(math.isfinite(v) for v in body_box)
+                and 0 < body_box[2] <= self.crop_w and body_box[3] > 0):
+            left, _, body_w, _ = body_box
+            clearance = min(left - self.x, self.x + self.crop_w - left - body_w)
+            # Shrink the dead zone as the body approaches a crop edge.
+            zone_scale = max(0.0, min(1.0, (clearance / self.crop_w - 0.15) / 0.15))
+            margin = min(0.04 * self.crop_w, (self.crop_w - body_w) / 2)
+            low, high = left + body_w + margin - self.crop_w, left - margin
+
+        desired = target_x - self.crop_w / 2
+        if self.mode == "deadzone":
+            error = desired - self.x
+            excess = max(0.0, abs(error) - self.deadzone * zone_scale * self.crop_w)
+            desired = self.x + math.copysign(excess, error)
+
+        # Body bounds guide the desired position. Smoothing and the speed cap
+        # still apply to the actual crop.
+        desired = self._bounded(min(max(desired, low), high))
+        if self.mode == "direct":
+            self.x = desired
+        else:
+            alpha = -math.expm1(-1 / (self.fps * self.response_s * (0.5 + 0.5 * zone_scale)))
+            step = (desired - self.x) * alpha
+            self.x = self._bounded(self.x + max(-self._max_step, min(step, self._max_step)))
+        return round(self.x)
 
 
 def load_model():
@@ -70,9 +127,9 @@ def build_crops(trajectory, frame_size, fps, initial_box, mode):
         if state['frame_index'] != index:
             raise ValueError('Saved trajectory has missing or reordered frames')
         if state.get('camera_reset'):
-            reset_box = state.get('reset_box') or state.get('target_box')
-            center = (state['reset_box'][0] + state['reset_box'][2] / 2
-                      if state.get('reset_box') else state['target_x'])
+            anchor = state.get('reset_box')
+            reset_box = anchor or state.get('target_box')
+            center = anchor[0] + anchor[2] / 2 if anchor else state['target_x']
             if center is None:
                 raise ValueError('Camera reset requires a confirmed target or explicit anchor')
             camera = CropController(width, height, fps, center, mode)
@@ -212,7 +269,7 @@ def main():
     parser.add_argument('sources', nargs='*', type=Path)
     parser.add_argument('--targets', type=Path, default=Path('targets.json'))
     parser.add_argument('--output', type=Path, default=Path('out/improved'))
-    parser.add_argument('--mode', choices=('direct', 'smooth', 'deadzone'), default='deadzone')
+    parser.add_argument('--mode', choices=CAMERA_MODES, default='deadzone')
     parser.add_argument('--replay', action='store_true', help='reuse saved target observations')
     parser.add_argument('--anchors', type=Path, help='optional per-clip lists of later frame target boxes')
     args = parser.parse_args()

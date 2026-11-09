@@ -1,13 +1,9 @@
-# CPU-only. Python 3.10-3.12.
-# On Linux/Windows the tensorflow-cpu wheel avoids pulling CUDA libs;
-# macOS has no tensorflow-cpu wheel, but the regular one is CPU-only there anyway.
+# Python 3.10-3.12. Inference runs on CPU.
+tensorflow==2.18.0
 tensorflow-cpu==2.18.0; sys_platform != "darwin"
-tensorflow==2.18.0; sys_platform == "darwin"
 tensorflow-hub==0.16.1
 tf-keras==2.18.0
-tensorflow==2.18.0; sys_platform != "darwin"
 setuptools==75.8.0  # tensorflow-hub imports pkg_resources, removed in newer setuptools
 opencv-python==4.10.0.84
 numpy==1.26.4
-matplotlib==3.9.2
 imageio-ffmpeg==0.6.0
